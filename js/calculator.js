@@ -1,3 +1,7 @@
+let operandLeft = 0;
+let operandRight = 0;
+let operator = "?";
+
 function add(num1, num2) {
     return num1 + num2;
 }
