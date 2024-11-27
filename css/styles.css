@@ -50,6 +50,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    gap: var(--button-gap);
 }
 
 .numpad-row {
@@ -59,14 +60,15 @@
     gap: var(--button-gap);
 }
 
-.num-button, .operator-button{
+.num-button, .operator-button, .clear-button{
     border: 2px outset gray;
     flex: 1;
     border-radius: 3px;
     box-shadow : 2px 3px 4px #222;
+    font-size: 18px;
 }
 
-.operator-button {
+.operator-button, .clear-button{
     max-height: var(--button-height);
 }
 
@@ -82,5 +84,3 @@
     max-height: calc(var(--button-height) * 2 + var(--button-gap));
     flex: 1;
 }
-
-
