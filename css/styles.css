@@ -1,0 +1,86 @@
+:root {
+    --button-height: 15vh;
+    --button-gap: 10px;
+}
+
+.calculator-container {
+    height: 100vh;
+    width: 100vh;
+    border: 3px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.display {
+    box-sizing: border-box;
+    margin-top: 5px;
+    border: 2px inset black;
+    border-radius: 10px;
+    flex: 3;
+}
+
+.calculator-buttons-container {
+    flex: 17;
+    display: flex;
+    gap: var(--button-gap);
+}
+
+.numpad-buttons-container {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--button-gap);
+}
+
+.operator-buttons-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--button-gap);
+}
+
+.equals-button-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.numpad-row {
+    display: flex;
+    justify-content: space-between;
+    height: var(--button-height);
+    gap: var(--button-gap);
+}
+
+.num-button, .operator-button{
+    border: 2px outset gray;
+    flex: 1;
+    border-radius: 3px;
+    box-shadow : 2px 3px 4px #222;
+}
+
+.operator-button {
+    max-height: var(--button-height);
+}
+
+#zero-button {
+    flex: 2;
+}
+
+#decimal-button {
+    flex: 1;
+}
+
+#equals-button {
+    max-height: calc(var(--button-height) * 2 + var(--button-gap));
+    flex: 1;
+}
+
+
