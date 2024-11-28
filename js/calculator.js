@@ -25,6 +25,7 @@ const BUTTON_ID_TO_ACTION = Object.freeze({
     "eight-button": () => pressNumber("8"),
     "nine-button": () => pressNumber("9"),
     "zero-button": () => pressNumber("0"),
+    "decimal-button": () => addDecimalPoint(),
     "plus-button": () => pressOperation(OPERATIONS.ADD),
     "minus-button": () => pressOperation(OPERATIONS.SUBTRACT),
     "multiply-button": () => pressOperation(OPERATIONS.MULTIPLY),
@@ -111,6 +112,7 @@ function pressNumber(singleDigitNumber) {
 	}
     }
 }
+
 function pressEquals() {
     if (!isRightOperandDefined()) {
 	calcOperation = OPERATIONS.UNDEFINED;
@@ -138,6 +140,19 @@ function pressOperation(operation) {
     }
 
     calcOperation = operation;
+}
+
+function addDecimalPoint() {
+    let isModifyingLeftOperand = !isOperationDefined();
+    if (!isModifyingLeftOperand) {
+	if (!isRightOperandDefined) {
+	    rightOperand = "0";
+	}
+	rightOperand = rightOperand.includes(".") ? rightOperand : rightOperand + ".";
+	return;
+    }
+
+    leftOperand = leftOperand.includes(".") ? leftOperand : leftOperand + ".";
 }
 
 function clear() {
