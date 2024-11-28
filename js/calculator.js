@@ -1,8 +1,18 @@
+class Operation {
+    constructor(symbol, func = () => {}) {
+	this.symbol = symbol;
+	this.func = func;
+    }
+}
+
 const OPERATIONS = Object.freeze({
-    "+": add,
-    "-": subtract,
-    "*": multiply,
-    "/": divide
+    ADD: new Operation("+", add),
+    SUBTRACT: new Operation("-", subtract),
+    MULTIPLY: new Operation("*", multiply),
+    DIVIDE: new Operation("/", divide),
+    EQUAL: undefined,
+    UNDEFINED: undefined
+});
 });
 
 let operandLeft = 0;
@@ -29,9 +39,9 @@ function divide(num1, num2) {
     return num1 / num2;
 }
 
-function operate(operandL, operandR, operator) {
-    if (operator in OPERATIONS) {
-	return OPERATIONS[operator](operandL, operandR);
+function operate(operandL, operandR, operation) {
+    if (Object.values(OPERATIONS).includes(operation)) {
+	return operation.func(operandL, operandR);
     }
     return undefined;
 }
