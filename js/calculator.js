@@ -13,11 +13,15 @@ const OPERATIONS = Object.freeze({
     EQUAL: undefined,
     UNDEFINED: undefined
 });
+
+const BUTTON_ID_TO_ACTION = Object.freeze({
 });
 
 const LEFT_OPERAND_DEFAULT_VALUE = "0";
 const RIGHT_OPERAND_UNDEFINED_VALUE = "";
 const CALC_OPERATION_UNDEFINED_VALUE = OPERATIONS.UNDEFINED;
+
+const buttonContainer = document.querySelector(".calculator-buttons-container");
 
 let currentDisplay = "";
 let leftOperand = LEFT_OPERAND_DEFAULT_VALUE;
@@ -50,3 +54,8 @@ function operate(operandL, operandR, operation) {
     }
     return undefined;
 }
+function buttonClicked(event) {
+    BUTTON_ID_TO_ACTION[event.target.id]();
+}
+
+buttonContainer.addEventListener("click", buttonClicked);
