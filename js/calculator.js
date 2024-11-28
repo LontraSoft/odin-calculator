@@ -144,3 +144,4 @@ function buttonClicked(event) {
 }
 
 buttonContainer.addEventListener("click", buttonClicked);
+updateDisplay();
