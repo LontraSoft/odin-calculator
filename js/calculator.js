@@ -31,6 +31,7 @@ const BUTTON_ID_TO_ACTION = Object.freeze({
     "multiply-button": () => pressOperation(OPERATIONS.MULTIPLY),
     "divide-button": () => pressOperation(OPERATIONS.DIVIDE),
     "equals-button": () => pressOperation(OPERATIONS.EQUAL),
+    "back-button": () => back(),
     "clear-button": () => clear()
 });
 
@@ -162,6 +163,38 @@ function addDecimalPoint() {
     }
 
     leftOperand = leftOperand.includes(".") ? leftOperand : leftOperand + ".";
+}
+
+function back() {
+    let removeLastChar = (str) => {
+	return str.substring(0, str.length - 1);
+    }
+
+    // The conditions must be executed in this order because of the
+    // order in which operations carried out
+    if (isRightOperandDefined()) {
+	// Remove the last character from rightOperand
+	rightOperand = removeLastChar(rightOperand);
+	if (rightOperand == "") {
+	    rightOperand = RIGHT_OPERAND_UNDEFINED_VALUE;
+	}
+	return;
+    }
+    
+    if (isOperationDefined()) {
+	calcOperation = CALC_OPERATION_UNDEFINED_VALUE;
+	return;
+    }
+    
+    if (leftOperand.length > 1) {
+	leftOperand = removeLastChar(leftOperand);
+	return;
+    }
+    
+    // If we have reached this point, the only possible scenario
+    // is that leftOperand is a single digit so setting to "0"
+    // is sufficient.
+    leftOperand = LEFT_OPERAND_DEFAULT_VALUE;
 }
 
 function clear() {
