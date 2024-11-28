@@ -14,6 +14,29 @@ const OPERATIONS = Object.freeze({
     UNDEFINED: undefined
 });
 
+const KEY_TO_ACTION = Object.freeze({
+    "1": () => pressNumber("1"),
+    "2": () => pressNumber("2"),
+    "3": () => pressNumber("3"),
+    "4": () => pressNumber("4"),
+    "5": () => pressNumber("5"),
+    "6": () => pressNumber("6"),
+    "7": () => pressNumber("7"),
+    "8": () => pressNumber("8"),
+    "9": () => pressNumber("9"),
+    "0": () => pressNumber("0"),
+    ".": () => addDecimalPoint(),
+    "+": () => pressOperation(OPERATIONS.ADD),
+    "-": () => pressOperation(OPERATIONS.SUBTRACT),
+    "*": () => pressOperation(OPERATIONS.MULTIPLY),
+    "x": () => pressOperation(OPERATIONS.MULTIPLY),
+    "/": () => pressOperation(OPERATIONS.DIVIDE),
+    "=": () => pressOperation(OPERATIONS.EQUAL),
+    "Enter": () => pressOperation(OPERATIONS.EQUAL),
+    "Backspace": () => back(),
+    "C": () => clear()
+});
+
 const BUTTON_ID_TO_ACTION = Object.freeze({
     "one-button": () => pressNumber("1"),
     "two-button": () => pressNumber("2"),
@@ -209,5 +232,13 @@ function buttonClicked(event) {
     updateDisplay();
 }
 
+function keyPressed(event) {
+    if (event.key in KEY_TO_ACTION) {
+	KEY_TO_ACTION[event.key]();
+    }
+    updateDisplay();
+}
+
 buttonContainer.addEventListener("click", buttonClicked);
+document.addEventListener("keydown", keyPressed)
 updateDisplay();
