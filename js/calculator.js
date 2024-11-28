@@ -21,6 +21,7 @@ const LEFT_OPERAND_DEFAULT_VALUE = "0";
 const RIGHT_OPERAND_UNDEFINED_VALUE = "";
 const CALC_OPERATION_UNDEFINED_VALUE = OPERATIONS.UNDEFINED;
 
+const displayElement = document.querySelector(".display");
 const buttonContainer = document.querySelector(".calculator-buttons-container");
 
 let currentDisplay = "";
@@ -54,8 +55,16 @@ function operate(operandL, operandR, operation) {
     }
     return undefined;
 }
+
+function updateDisplay() {
+    let leftDisplay = leftOperand;
+    let operatorDisplay = isOperationDefined() ? " " + calcOperation.symbol : "";
+    let rightDisplay = isRightOperandDefined() ? " " + rightOperand : "";
+    displayElement.textContent = `${leftDisplay}${operatorDisplay}${rightDisplay}`;
+}
 function buttonClicked(event) {
     BUTTON_ID_TO_ACTION[event.target.id]();
+    updateDisplay();
 }
 
 buttonContainer.addEventListener("click", buttonClicked);
