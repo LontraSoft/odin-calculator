@@ -15,6 +15,16 @@ const OPERATIONS = Object.freeze({
 });
 
 const BUTTON_ID_TO_ACTION = Object.freeze({
+    "one-button": () => pressNumber("1"),
+    "two-button": () => pressNumber("2"),
+    "three-button": () => pressNumber("3"),
+    "four-button": () => pressNumber("4"),
+    "five-button": () => pressNumber("5"),
+    "six-button": () => pressNumber("6"),
+    "seven-button": () => pressNumber("7"),
+    "eight-button": () => pressNumber("8"),
+    "nine-button": () => pressNumber("9"),
+    "zero-button": () => pressNumber("0"),
 });
 
 const LEFT_OPERAND_DEFAULT_VALUE = "0";
@@ -28,6 +38,14 @@ let currentDisplay = "";
 let leftOperand = LEFT_OPERAND_DEFAULT_VALUE;
 let rightOperand = RIGHT_OPERAND_UNDEFINED_VALUE;
 let calcOperation = CALC_OPERATION_UNDEFINED_VALUE;
+
+function isOperationDefined() {
+    return calcOperation !== CALC_OPERATION_UNDEFINED_VALUE;
+}
+
+function isRightOperandDefined() {
+    return rightOperand != RIGHT_OPERAND_UNDEFINED_VALUE;
+}
 
 function add(num1, num2) {
     return num1 + num2;
@@ -61,6 +79,31 @@ function updateDisplay() {
     let operatorDisplay = isOperationDefined() ? " " + calcOperation.symbol : "";
     let rightDisplay = isRightOperandDefined() ? " " + rightOperand : "";
     displayElement.textContent = `${leftDisplay}${operatorDisplay}${rightDisplay}`;
+}
+
+function pressNumber(singleDigitNumber) {
+    num = Number(singleDigitNumber);
+    if (num < 0 || num > 9 || !Number.isInteger(num)) {
+	return;
+    }
+
+    let isModifyingLeftOperand = !isOperationDefined();
+    if (isModifyingLeftOperand) {
+	if (leftOperand !== "0") {
+	    leftOperand += singleDigitNumber;
+	}
+	else {
+	    leftOperand = singleDigitNumber;
+	}
+    }
+    else {
+	if (rightOperand === "0") {
+	    rightOperand = singleDigitNumber;
+	}
+	else {
+	    rightOperand += singleDigitNumber;
+	}
+    }
 }
 function buttonClicked(event) {
     BUTTON_ID_TO_ACTION[event.target.id]();
