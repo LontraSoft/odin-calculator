@@ -119,7 +119,16 @@ function pressEquals() {
 	return;
     }
 
-    leftOperand = String(operate(Number(leftOperand), Number(rightOperand), calcOperation).toFixed(4));
+    const countDecimalPlaces = (numberString) => {
+	let decimalIndex = numberString.indexOf('.');
+	return decimalIndex >= 0 ? numberString.length - decimalIndex - 1 : 0;
+    }
+
+    leftOperand = String(operate(Number(leftOperand), Number(rightOperand), calcOperation));
+    if (countDecimalPlaces(leftOperand) > 4) {
+	leftOperand = Number(leftOperand).toFixed(4);
+    }
+    
     calcOperation = CALC_OPERATION_UNDEFINED_VALUE;
     rightOperand = RIGHT_OPERAND_UNDEFINED_VALUE;
 }
