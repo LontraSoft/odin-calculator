@@ -25,6 +25,11 @@ const BUTTON_ID_TO_ACTION = Object.freeze({
     "eight-button": () => pressNumber("8"),
     "nine-button": () => pressNumber("9"),
     "zero-button": () => pressNumber("0"),
+    "plus-button": () => pressOperation(OPERATIONS.ADD),
+    "minus-button": () => pressOperation(OPERATIONS.SUBTRACT),
+    "multiply-button": () => pressOperation(OPERATIONS.MULTIPLY),
+    "divide-button": () => pressOperation(OPERATIONS.DIVIDE),
+    "equals-button": () => pressOperation(OPERATIONS.EQUAL),
 });
 
 const LEFT_OPERAND_DEFAULT_VALUE = "0";
@@ -104,6 +109,34 @@ function pressNumber(singleDigitNumber) {
 	    rightOperand += singleDigitNumber;
 	}
     }
+}
+function pressEquals() {
+    if (!isRightOperandDefined()) {
+	calcOperation = OPERATIONS.UNDEFINED;
+	return;
+    }
+
+    leftOperand = String(operate(Number(leftOperand), Number(rightOperand), calcOperation).toFixed(4));
+    calcOperation = CALC_OPERATION_UNDEFINED_VALUE;
+    rightOperand = RIGHT_OPERAND_UNDEFINED_VALUE;
+}
+
+function pressOperation(operation) {
+    if (calcOperation === OPERATIONS.DIVIDE && Number(rightOperand) === 0) {
+	alert("Cannot divide by yourself, sorry about that");
+	return;
+    }
+    
+    if (operation === OPERATIONS.EQUAL) {
+	pressEquals();
+	return;
+    }
+    
+    if (isOperationDefined() && isRightOperandDefined()) {
+	pressEquals();
+    }
+
+    calcOperation = operation;
 }
 function buttonClicked(event) {
     BUTTON_ID_TO_ACTION[event.target.id]();
