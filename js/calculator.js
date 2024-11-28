@@ -30,6 +30,7 @@ const BUTTON_ID_TO_ACTION = Object.freeze({
     "multiply-button": () => pressOperation(OPERATIONS.MULTIPLY),
     "divide-button": () => pressOperation(OPERATIONS.DIVIDE),
     "equals-button": () => pressOperation(OPERATIONS.EQUAL),
+    "clear-button": () => clear()
 });
 
 const LEFT_OPERAND_DEFAULT_VALUE = "0";
@@ -138,6 +139,13 @@ function pressOperation(operation) {
 
     calcOperation = operation;
 }
+
+function clear() {
+    leftOperand = LEFT_OPERAND_DEFAULT_VALUE;
+    rightOperand = RIGHT_OPERAND_UNDEFINED_VALUE;
+    calcOperation = CALC_OPERATION_UNDEFINED_VALUE;
+}
+
 function buttonClicked(event) {
     BUTTON_ID_TO_ACTION[event.target.id]();
     updateDisplay();
