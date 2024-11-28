@@ -135,7 +135,7 @@ function pressEquals() {
 }
 
 function pressOperation(operation) {
-    if (calcOperation === OPERATIONS.DIVIDE && Number(rightOperand) === 0) {
+    if (calcOperation === OPERATIONS.DIVIDE && isRightOperandDefined() && Number(rightOperand) === 0) {
 	alert("Cannot divide by yourself, sorry about that");
 	return;
     }
@@ -178,6 +178,7 @@ function back() {
 	if (rightOperand == "") {
 	    rightOperand = RIGHT_OPERAND_UNDEFINED_VALUE;
 	}
+
 	return;
     }
     
