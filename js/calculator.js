@@ -15,9 +15,10 @@ const OPERATIONS = Object.freeze({
 });
 });
 
-let operandLeft = 0;
-let operandRight = 0;
-let operator = "?";
+let currentDisplay = "";
+let leftOperand = "0";
+let rightOperand = "";
+let calcOperation = OPERATIONS.UNDEFINED;
 
 function add(num1, num2) {
     return num1 + num2;
