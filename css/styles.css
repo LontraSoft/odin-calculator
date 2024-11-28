@@ -60,7 +60,7 @@
     gap: var(--button-gap);
 }
 
-.num-button, .operator-button, .clear-button{
+.num-button, .operator-button, .clear-button, .back-button{
     border: 2px outset gray;
     flex: 1;
     border-radius: 3px;
@@ -68,7 +68,7 @@
     font-size: 18px;
 }
 
-.operator-button, .clear-button{
+.operator-button, .clear-button, .back-button{
     max-height: var(--button-height);
 }
 
