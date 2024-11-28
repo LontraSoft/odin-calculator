@@ -15,10 +15,14 @@ const OPERATIONS = Object.freeze({
 });
 });
 
+const LEFT_OPERAND_DEFAULT_VALUE = "0";
+const RIGHT_OPERAND_UNDEFINED_VALUE = "";
+const CALC_OPERATION_UNDEFINED_VALUE = OPERATIONS.UNDEFINED;
+
 let currentDisplay = "";
-let leftOperand = "0";
-let rightOperand = "";
-let calcOperation = OPERATIONS.UNDEFINED;
+let leftOperand = LEFT_OPERAND_DEFAULT_VALUE;
+let rightOperand = RIGHT_OPERAND_UNDEFINED_VALUE;
+let calcOperation = CALC_OPERATION_UNDEFINED_VALUE;
 
 function add(num1, num2) {
     return num1 + num2;
